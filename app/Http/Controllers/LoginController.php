@@ -23,25 +23,32 @@ class LoginController extends Controller
         ]);
 
         //$email = 
-        $user = User::where('users.email','=',$credentials['email'])->firstOrFail();
+        $user = User::where('users.email','=',$credentials['email'])->first();
 
-        if(Hash::check($credentials['password'], $user->password)){
+        if($user != null){
 
-            $token = $request->session()->token();
-            //$token = csrf_token();
+            if(Hash::check($credentials['password'], $user->password)){
 
-            $data = [
-                'name' => $user->name,
-                'id'=> $user->id,
-                'token' => $token
-            ];
-            
+                $token = $request->session()->token();
+                //$token = csrf_token();
+    
+                $data = [
+                    'name' => $user->name,
+                    'id'=> $user->id,
+                    'token' => $token
+                ];
+                
+    
+                return $data; //echo utf8_encode(json_encode($user));
+            }else{
+    
+                return ['error' => "clave incorrecta"];
+            }
 
-            return $data; //echo utf8_encode(json_encode($user));
         }else{
-
-            return ['error' => "clave incorrecta"];
+            return ['error' => "El usuario no existe"];
         }
+      
        
     }
 }
