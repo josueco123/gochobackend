@@ -28,7 +28,7 @@ class LoginController extends Controller
         if(Hash::check($credentials['password'], $user->password)){
 
             $token = $request->session()->token();
-            $token = csrf_token();
+            //$token = csrf_token();
 
             $data = [
                 'name' => $user->name,

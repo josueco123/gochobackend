@@ -37,17 +37,25 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $password = Hash::make($request->get('password'));
+        try{
+            $password = Hash::make($request->get('password'));
         
-        $user = new User(array(
-            'name'=>$request->get('name'),
-            'email'=>$request->get('email'),
-            'password'=>$password,
-            ));
-            
-        $user->save();
+            $user = new User(array(
+                'name'=>$request->get('name'),
+                'email'=>$request->get('email'),
+                'password'=>$password,
+                ));
+                
+            $user->save();
 
-        return "Guardado con exito";
+            echo "Guardado con exito";
+
+        }catch (Exception $e) {
+            echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        }
+        
+
+        
     }
 
     /**
