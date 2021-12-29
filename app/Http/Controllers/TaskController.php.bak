@@ -61,7 +61,6 @@ class TaskController extends Controller
 
        
         $tasks = Task::where('tasks.user_id','=',$id)
-		 ->where('tasks.state','=',0)
         ->orderBy('due_date', 'asc')                    
                     ->get();
 

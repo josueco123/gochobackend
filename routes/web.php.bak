@@ -23,8 +23,8 @@ Route::get('/', function () {
 Route::post('/login',[LoginController::class, 'authenticate'] );
 Route::post('/createuser',[UserController::class, 'store'] );
 Route::post('/tareas/crear', [TaskController::class, 'store']);
-Route::get('/tareas/consultar/{id?}', [TaskController::class, 'getMyTask']);
-Route::get('/tareas/consultar/pendientes/{id?}', [TaskController::class, 'getMyPendingTasks']);
+Route::get('/tareas/consultar/{id?}}', [TaskController::class, 'getMyTask']);
+Route::get('/tareas/consultar/pendientes/{id?}}', [TaskController::class, 'getMyPendingTasks']);
 Route::get('/tareas/consultar/finalizadas/{id?}', [TaskController::class, 'getMyFinishedTasks']);
 Route::get('/tareas/consultar/fecha/{id?}', [TaskController::class, 'getMyTasksByDue']);
 Route::post('/tareas/actualizar', [TaskController::class, 'update']);
